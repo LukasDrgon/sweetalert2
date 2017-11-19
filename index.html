@@ -350,18 +350,18 @@ swal.setDefaults({
   <span class="str">'Question 3'</span>
 ]
 
-swal.queue(steps).then(<span class="func"><i>function</i></span> (result) {
+swal.queue(steps).<span class="tag">then</span>(result => {
   swal.resetDefaults()
-  swal({
-    title: <span class="str">'All done!'</span>,
-    html:
-      <span class="str">'Your answers: &lt;pre&gt;'</span> +
-        JSON.stringify(result) +
-      <span class="str">'&lt;/pre&gt;'</span>,
-    confirmButtonText: <span class="str">'Lovely!'</span>
-  })
-}, <span class="func"><i>function</i></span> () {
-  swal.resetDefaults()
+  <span class="tag">if</span> (result.value) {
+    swal({
+      title: <span class="str">'All done!'</span>,
+      html:
+        <span class="str">'Your answers: &lt;pre&gt;'</span> +
+          JSON.stringify(result.value) +
+        <span class="str">'&lt;/pre&gt;'</span>,
+      confirmButtonText: <span class="str">'Lovely!'</span>
+    })
+  }
 })</pre>
     </li>
 
@@ -1714,13 +1714,13 @@ swal({
 
     swal.queue(steps).then(function (result) {
       swal.resetDefaults()
-      swal({
-        title: 'All done!',
-        html: 'Your answers: <pre>' + JSON.stringify(result) + '</pre>',
-        confirmButtonText: 'Lovely!'
-      })
-    }, function () {
-      swal.resetDefaults()
+      if (result.value) {
+        swal({
+          title: 'All done!',
+          html: 'Your answers: <pre>' + JSON.stringify(result.value) + '</pre>',
+          confirmButtonText: 'Lovely!'
+        })
+      }
     })
   })
 
